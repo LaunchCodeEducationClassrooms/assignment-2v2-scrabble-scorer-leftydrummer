@@ -23,20 +23,11 @@ function oldScrabbleScore(word) {
             if (oldPointStructure[pointValue].includes(word[i])) {
                 letterPoints += `Points for '${word[i]}': ${pointValue}\n`
             }
-
         }
     }
     return letterPoints;
 }
 
-let scrabbleScore = function (word) {
-    word = word.toLowerCase();
-    let letterPoints = 0;
-    for (let i = 0; i < word.length; i++) {
-        letterPoints += newPointStructure[word[i]]
-    }
-    return letterPoints;
-}
 
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
@@ -45,13 +36,9 @@ function initialPrompt() {
     return input.question("Let's play some scrabble! Enter a word:");
 }
 
-let simpleScore =
-    function (word) {return word.length}
 
-let simpleScoreObj = {
-    scoringFunction: simpleScore,
-    name: "Simple Score",
-    description: "Each letter is worth 1 point."
+let simpleScore = function (word) {
+    return word.length
 }
 
 let vowelBonusScore = function (word) {
@@ -67,12 +54,26 @@ let vowelBonusScore = function (word) {
     return vbs
 }
 
+let scrabbleScore = function (word) {
+    word = word.toLowerCase();
+    let letterPoints = 0;
+    for (let i = 0; i < word.length; i++) {
+        letterPoints += newPointStructure[word[i]]
+    }
+    return letterPoints;
+}
+
+let simpleScoreObj = {
+    scoringFunction: simpleScore,
+    name: "Simple Score",
+    description: "Each letter is worth 1 point."
+}
+
 let vowelBonusScoreObj = {
     scoringFunction: vowelBonusScore,
     name: "Bonus Vowels",
     description: "Vowels are 3 pts, consonants are 1 pt."
 }
-
 
 let scrabbleScoreObj = {
     scoringFunction: scrabbleScore,
@@ -105,6 +106,7 @@ function transform(oldPointStruct) {
 
 let newPointStructure = transform(oldPointStructure);
 
+//Custom function to determine if character is a vowel
 function isVowel(c) {
     return ['a', 'e', 'i', 'o', 'u'].indexOf(c.toLowerCase()) !== -1
 }
@@ -115,16 +117,8 @@ function runProgram() {
     let score = algo.scoringFunction(word)
     console.log(`Score for '${word}': ${score}`)
 
-/*    let oldLetterArray = Object.values(oldPointStructure)
-
-    for(i=0; i < oldLetterArray.length;i++){
-        console.log(oldLetterArray);
-        for(j=0;j<oldLetterArray[j].length;i++){
-            console.log(oldLetterArray[i].length);
-        };*/
-
-
 }
+
 
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
