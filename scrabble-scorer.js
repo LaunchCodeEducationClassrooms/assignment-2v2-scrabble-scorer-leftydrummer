@@ -45,11 +45,8 @@ function initialPrompt() {
     return input.question("Let's play some scrabble! Enter a word:");
 }
 
-let simpleScore = {
-    function (word) {
-        return word.length
-    }
-}
+let simpleScore =
+    function (word) {return word.length}
 
 let simpleScoreObj = {
     scoringFunction: simpleScore,
